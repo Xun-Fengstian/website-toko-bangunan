@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <title>TOKO BANGUNAN</title>
+
+    
+    <style> 
+      .produk-container {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      
+      .produk {
+        display:flex;
+        flex-direction:column;
+        align-items: center;
+        gap:10px;
+        
+        flex:1;
+        min-width:200px;
+        max-width:250px;
+        padding:20px;
+        border:1px solid black;
+        border-radius: 10px;
+      }
+
+      .produk img {
+        max-width:180px;
+        width:100%;
+        height:auto;
+      }
+
+      .tombol-beli {
+        color:white;
+        background-color:green;
+        padding:10px 20px;
+        border:none;
+        border-radius:8px;
+        cursor:pointer;
+      }
+      .produk h2 {
+        margin:0;
+      }
+
+      .produk p {
+        margin:0;
+      }
+
+      body {
+  margin: 0;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+}
+
+h1 {
+  text-align: center;
+  color: #222;
+}
+
+body > p {
+  text-align: center;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.produk-container {
+  max-width: 1000px;
+  margin: auto;
+}
+
+.produk {
+  background-color: white;
+  box-sizing: border-box;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+}
+
+.produk h2 {
+  color: #222;
+}
+
+.produk p {
+  color: #555;
+}
+
+.tombol-beli:hover {
+  background-color: darkgreen;
+}
+
+#isi-keranjang {
+  max-width: 1000px;
+  margin: 20px auto 5px;
+  padding: 15px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+#jumlah-produk,
+#total-harga {
+  font-weight: bold;
+}
+
+body > h2 {
+  max-width: 1000px;
+  margin: 40px auto 10px;
+}
+
+    .harga{
+      font-size:18px;
+      font-weight:bold;
+    }
+
+      #daftar-keranjang {
+  max-width: 1000px;
+  margin: 10px auto;
+}
+
+#daftar-keranjang > div {
+  background-color: white;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+      
+    </style>
+      
+  </head>
+  
+    <script>
+
+      
+  let keranjang = {};
+  let total = 0;
+
+  function beli(namaProduk, hargaProduk) {
+
+    // Kalau produk sudah ada, jumlahnya bertambah
+    if (keranjang[namaProduk]) {
+      keranjang[namaProduk].jumlah++;
+    } 
+    
+    // Kalau produk belum ada, buat produk baru
+    else {
+      keranjang[namaProduk] = {
+        harga: hargaProduk,
+        jumlah: 1
+      };
+    }
+
+    // Tambahkan harga satu barang ke total
+    total = total + hargaProduk;
+
+    // Tampilkan isi keranjang
+    document.getElementById("isi-keranjang").textContent =
+      Object.keys(keranjang)
+        .map(function(nama) {
+          let produk = keranjang[nama];
+
+          return nama + " x" + produk.jumlah +
+                 " (Rp" + produk.harga.toLocaleString("id-ID") + ")";
+        })
+        .join(", ");
+
+    // Jumlah jenis produk 
+    document.getElementById("jumlah-produk").textContent  =
+    object.values(keranjang).reduce(function (total,produk) 
+    {return total+produk,jumlah;} ,0);
+
+    // Total harga
+    document.getElementById("total-harga").textContent =
+      total.toLocaleString("id-ID");
+  }
+
+      
+</script>
+  
+  <body>
+  <h1> toko kami menyediakan bahan material bangunan</h1>
+  <p>silahkan pilih material yang anda butuhkan</p>
+
+
+  <div class="produk-container">
+    
+    <div class="produk">
+    <img src="semen.jpg" alt="semen">
+    <h2> Semen</h2>
+    <p class="harga">Rp54.000</p>
+    <button class="tombol-beli"onclick="beli('semen',54000)">BELI</button>
+    </div>
+
+    
+    <div class="produk">
+    <img src="semen.jpg" alt="semen">
+    <h2> Pasir</h2>
+    <p class="harga">Rp100.000</p>
+    <button class="tombol-beli"onclick="beli('pasir',100000)">BELI</button>
+    </div>
+
+    
+    <div class="produk">
+    <img src="semen.jpg" alt="semen">
+    <h2> Bata</h2>
+    <p class="harga">Rp1.000</p>
+    <button class="tombol-beli"onclick="beli('bata',1000)">BELI</button>
+    </div>
+    
+    <div class="produk">
+    <img src="semen.jpg" alt="semen">
+    <h2> besi</h2>
+    <p class="harga">Rp75.000</p>
+    <button class="tombol-beli"onclick="beli('besi',75000)">BELI</button>
+    </div>
+
+    
+    <div class="produk">
+    <img src="semen.jpg" alt="semen">
+    <h2> Kramik</h2>
+    <p class="harga">Rp65.000</p>
+    <button class="tombol-beli"onclick="beli('kramik',65000)">BELI</button>
+    </div>
+    
+  </div>
+
+  
+<h2>keranjang</h2>
+  <p id="isi-keranjang">belum ada produk.</p>
+  <p>jumlah:<span id="jumlah-produk">0</span></p>
+  <p>Total: Rp<span id="total-harga">0</span></p>
+</body>
+</html>
